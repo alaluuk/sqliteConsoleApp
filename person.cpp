@@ -27,7 +27,7 @@ string Person::getData() {
         return row.toStdString();
     }
 }
-string Person::getSelected(QString id) {
+string Person::getSelected(int id) {
     db.open();
     if (!db.open()) {
         qDebug() << "ERROR :" + db.lastError().text();
@@ -48,13 +48,79 @@ string Person::getSelected(QString id) {
     }
 }
 
-void Person::setTodatabase(string id, string fn, string ln) {}
+string Person::addTodatabase(int id, QString fn, QString ln) {
+    db.open();
+    if (!db.open()) {
+        qDebug() << "ERROR :" + db.lastError().text();
+        return "No connection";
+    } else {
+        qDebug() << "Connection Open";
+        QString row;
+        QSqlQuery query;
+        query.prepare("INSERT INTO person(id,firstname,lastname) VALUES(:id, :fn, :ln)");
+        query.bindValue(":id",id);
+        query.bindValue(":fn",fn);
+        query.bindValue(":ln",ln);
+        //qDebug()<<query.exec();
+        bool res=query.exec();
+        qDebug()<<res;
+        if(res){
+            return "data added";
+        }
+        else{
+            return "something went wrong";
+        }
+        db.close();
+    }
+}
+string Person::updateSelected(int id, QString fn, QString ln)
+{
+    db.open();
+    if (!db.open()) {
+        qDebug() << "ERROR :" + db.lastError().text();
+        return "No connection";
+    } else {
+        qDebug() << "Connection Open";
+        QSqlQuery query;
+        query.prepare("UPDATE person SET firstname =:fn, lastname =:ln WHERE id =:id");
+        query.bindValue(":id",id);
+        query.bindValue(":fn",fn);
+        query.bindValue(":ln",ln);
+        //qDebug()<<query.exec();
+        bool res=query.exec();
+        qDebug()<<res;
+        if(res){
+            return "data updated";
+        }
+        else{
+            return "something went wrong";
+        }
+        db.close();
+    }
+}
+string Person::delFromDatabase(int id) {
+    db.open();
+    if (!db.open()) {
+        qDebug() << "ERROR :" + db.lastError().text();
+        return "No connection";
+    } else {
+        qDebug() << "Connection Open";
+        QString row;
+        QSqlQuery query;
+        query.prepare("DELETE FROM person WHERE id=:id");
+        query.bindValue(":id", id);
+        //qDebug()<<query.exec();
+        bool res=query.exec();
+        if(res){
+            return "data removed";
+        }
+        else{
+            return "something went wrong";
+        }
+        db.close();
 
-void Person::delFromDatabase(string id) {}
+    }
+}
 
-
-
-
-void Person::updateSelected(string id, string fn, string ln) {}
 
 

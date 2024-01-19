@@ -12,11 +12,11 @@ private:
     QSqlDatabase db;
 public:
     Person();
-    void setTodatabase(string id, string fn, string ln);
-    void delFromDatabase(string id);
     string getData();
-    string getSelected(QString id);
-    void updateSelected(string id, string fn, string ln);
+    string getSelected(int id);
+    string addTodatabase(int id, QString fn, QString ln);
+    string delFromDatabase(int id);
+    string updateSelected(int id, QString fn, QString ln);
 };
 
 #endif // PERSON_H
