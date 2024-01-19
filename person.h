@@ -12,6 +12,7 @@ private:
     string id;
     string firstname;
     string lastname;
+    QSqlDatabase db;
 public:
     Person();
     string getId() const;
@@ -24,7 +25,7 @@ public:
     void setTodatabase(string id, string fn, string ln);
     void delFromDatabase(string id);
     string getData();
-    void getSelected(string id);
+    string getSelected(QString id);
     void updateSelected(string id, string fn, string ln);
 };
 

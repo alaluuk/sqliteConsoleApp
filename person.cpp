@@ -1,5 +1,8 @@
 #include "person.h"
 
+#include <QCoreApplication>
+
+
 string Person::getId() const
 {
     return id;
@@ -42,11 +45,7 @@ void Person::delFromDatabase(string id)
 
 string Person::getData()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:\\codes\\qt_projects\\QmlSqlite\\mydb.db");
     db.open();
-
-
     if (!db.open())
     {
         qDebug() <<"ERROR :"+ db.lastError().text();
@@ -54,11 +53,9 @@ string Person::getData()
     }
     else {
         qDebug()<<"Connection Open";
-        QString row="ID : Etunimi : Sukunimi\n";
-        row+="____________________\n";
-        QString queryString = "SELECT * FROM person";
+        QString row;
         QSqlQuery query;
-        query.exec(queryString);
+        query.exec("SELECT * FROM person");
 
         while (query.next()) {
 
@@ -71,9 +68,27 @@ string Person::getData()
     }
 }
 
-void Person::getSelected(string id)
+string Person::getSelected(QString id)
 {
+    db.open();
+    if (!db.open())
+    {
+        qDebug() <<"ERROR :"+ db.lastError().text();
+        return "No connection";
+    }
+    else {
+        qDebug()<<"Connection Open";
+    QString row;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM person WHERE id=:id");
+    query.bindValue(":id",id);
+    query.exec();
 
+    query.next();
+    row= query.value(0).toString()+" : "+ query.value(1).toString()+" : "+query.value(2).toString()+"\n";
+    db.close();
+    return row.toStdString();
+    }
 }
 
 void Person::updateSelected(string id, string fn, string ln)
@@ -83,5 +98,7 @@ void Person::updateSelected(string id, string fn, string ln)
 
 Person::Person()
 {
-
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString myFolder="C:/codes/qt_projects/sqliteConsoleApp";
+    db.setDatabaseName(myFolder+"/database/mydb.db");
 }

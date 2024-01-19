@@ -7,11 +7,11 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-
     cout<<"Start"<<endl;
     string data;
     Person objectPerson;
-    data=objectPerson.getData();
+//    data=objectPerson.getData();
+    data=objectPerson.getSelected("1");
     cout<<data;
 
     return a.exec();
