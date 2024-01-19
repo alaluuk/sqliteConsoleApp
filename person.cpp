@@ -3,13 +3,14 @@
 #include <QCoreApplication>
 
 Person::Person() {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    QString myFolder = "C:/codes/qt_projects/sqliteConsoleApp";
-    db.setDatabaseName(myFolder + "/database/mydb.db");
+
 }
 
 string Person::getData() {
-    db.open();
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        QString myFolder = "C:/codes/qt_projects/sqliteConsoleApp";
+        db.setDatabaseName(myFolder + "/database/mydb.db");
+        db.open();
     if (!db.open()) {
         qDebug() << "ERROR :" + db.lastError().text();
         return "No connection";
@@ -28,12 +29,14 @@ string Person::getData() {
     }
 }
 string Person::getSelected(int id) {
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString myFolder = "C:/codes/qt_projects/sqliteConsoleApp";
+    db.setDatabaseName(myFolder + "/database/mydb.db");
     db.open();
     if (!db.open()) {
         qDebug() << "ERROR :" + db.lastError().text();
         return "No connection";
     } else {
-        qDebug() << "Connection Open";
         QString row;
         QSqlQuery query;
         query.prepare("SELECT * FROM person WHERE id=:id");
@@ -43,12 +46,17 @@ string Person::getSelected(int id) {
         query.next();
         row = query.value(0).toString() + " : " + query.value(1).toString() +
               " : " + query.value(2).toString() + "\n";
+        query.finish();
+        query.clear();
         db.close();
         return row.toStdString();
     }
 }
 
 string Person::addTodatabase(int id, QString fn, QString ln) {
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString myFolder = "C:/codes/qt_projects/sqliteConsoleApp";
+    db.setDatabaseName(myFolder + "/database/mydb.db");
     db.open();
     if (!db.open()) {
         qDebug() << "ERROR :" + db.lastError().text();
@@ -75,6 +83,9 @@ string Person::addTodatabase(int id, QString fn, QString ln) {
 }
 string Person::updateSelected(int id, QString fn, QString ln)
 {
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString myFolder = "C:/codes/qt_projects/sqliteConsoleApp";
+    db.setDatabaseName(myFolder + "/database/mydb.db");
     db.open();
     if (!db.open()) {
         qDebug() << "ERROR :" + db.lastError().text();
@@ -99,6 +110,9 @@ string Person::updateSelected(int id, QString fn, QString ln)
     }
 }
 string Person::delFromDatabase(int id) {
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString myFolder = "C:/codes/qt_projects/sqliteConsoleApp";
+    db.setDatabaseName(myFolder + "/database/mydb.db");
     db.open();
     if (!db.open()) {
         qDebug() << "ERROR :" + db.lastError().text();
