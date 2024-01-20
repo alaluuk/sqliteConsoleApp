@@ -38,13 +38,14 @@ int main(int argc, char *argv[])
     }
     else{
         cout<<"Loppu"<<endl;
+        QCoreApplication::quit();
     }
     }
-
     return a.exec();
 }
 int menu(){
     int choice;
+    cout<<endl<<"***********************"<<endl;
     cout<<"Valitse toiminto"<<endl;
     cout<<"(1) kaikki tietueet"<<endl;
     cout<<"(2) valittu tietue"<<endl;
@@ -53,7 +54,9 @@ int menu(){
     cout<<"(5) poista tietue"<<endl;
     cout<<"(6) lisaa data tiedostosta"<<endl;
     cout<<"(0) LOPETA"<<endl;
+    cout<<"***********************"<<endl;
     cin>>choice;
+    system("CLS");
     return choice;
 }
 void allRows(){
@@ -78,13 +81,11 @@ void addData(){
     QString fname;
     QString lname;
     QTextStream qtin(stdin);
-    cout<<"Anna id"<<endl;
-    cin>>id;
     cout<<"Anna etunimi"<<endl;
     fname=qtin.readLine();
     cout<<"Anna sukunimi"<<endl;
     lname=qtin.readLine();
-    data=objectPerson.addTodatabase(id,fname,lname);
+    data=objectPerson.addTodatabase(fname,lname);
     cout<<data;
 }
 void updateData(){

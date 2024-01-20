@@ -57,7 +57,7 @@ string Person::getSelected(int id) {
   }
 }
 
-string Person::addTodatabase(int id, QString fn, QString ln) {
+string Person::addTodatabase(QString fn, QString ln) {
   if (!db.open()) {
     qDebug() << "ERROR :" + db.lastError().text();
     return "No connection";
@@ -66,8 +66,7 @@ string Person::addTodatabase(int id, QString fn, QString ln) {
     QString row;
     QSqlQuery query;
     query.prepare(
-        "INSERT INTO person(id,firstname,lastname) VALUES(:id, :fn, :ln)");
-    query.bindValue(":id", id);
+        "INSERT INTO person(firstname,lastname) VALUES(:fn, :ln)");
     query.bindValue(":fn", fn);
     query.bindValue(":ln", ln);
     bool res = query.exec();
@@ -141,13 +140,11 @@ string Person::insertFromTextFile(QString filename) {
       QString line = in.readLine();
       QStringList parts = line.split(',');
 
-      if (parts.size() == 3) {
-        int id = parts[0].trimmed().toInt();
-        QString firstname = parts[1].trimmed();
-        QString lastname = parts[2].trimmed();
+      if (parts.size() == 2) {
+        QString firstname = parts[0].trimmed();
+        QString lastname = parts[1].trimmed();
         // Insert data into the database
-        query.prepare("INSERT INTO person VALUES (:id, :fistname, :lastname)");
-        query.bindValue(":id", id);
+        query.prepare("INSERT INTO person (firstname,lastname) VALUES (:firstname, :lastname)");
         query.bindValue(":firstname", firstname);
         query.bindValue(":lastname", lastname);
 

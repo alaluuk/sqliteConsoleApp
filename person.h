@@ -19,7 +19,7 @@ public:
     ~Person();
     string getData();
     string getSelected(int id);
-    string addTodatabase(int id, QString fn, QString ln);
+    string addTodatabase(QString fn, QString ln);
     string delFromDatabase(int id);
     string updateSelected(int id, QString fn, QString ln);
     string insertFromTextFile(QString filename);
