@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
     int choice=1;
     QCoreApplication a(argc, argv);
-    while (choice!=5){
+    while (choice!=6){
           choice=menu();
     if(choice==1){
         allRows();
@@ -25,6 +25,12 @@ int main(int argc, char *argv[])
     }
     else if(choice==3){
         addData();
+    }
+    else if(choice==4){
+        updateData();
+    }
+    else if(choice==5){
+        deleteData();
     }
     else{
         cout<<"Loppu"<<endl;
@@ -40,7 +46,8 @@ int menu(){
     cout<<"(2) valittu tietue"<<endl;
     cout<<"(3) lisaa uusi"<<endl;
     cout<<"(4) muokkaa tietue"<<endl;
-    cout<<"(5) LOPETA"<<endl;
+    cout<<"(5) poista tietue"<<endl;
+    cout<<"(6) LOPETA"<<endl;
     cin>>choice;
     return choice;
 }
@@ -73,5 +80,30 @@ void addData(){
     cout<<"Anna sukunimi"<<endl;
     lname=qtin.readLine();
     data=objectPerson.addTodatabase(id,fname,lname);
+    cout<<data;
+}
+void updateData(){
+    string data;
+    Person objectPerson;
+    int id;
+    QString fname;
+    QString lname;
+    QTextStream qtin(stdin);
+    cout<<"Anna id"<<endl;
+    cin>>id;
+    cout<<"Anna etunimi"<<endl;
+    fname=qtin.readLine();
+    cout<<"Anna sukunimi"<<endl;
+    lname=qtin.readLine();
+    data=objectPerson.updateSelected(id,fname,lname);
+    cout<<data;
+}
+void deleteData(){
+    string data;
+    Person objectPerson;
+    cout<<"Anna id"<<endl;
+    int id;
+    cin>>id;
+    data=objectPerson.delFromDatabase(id);
     cout<<data;
 }

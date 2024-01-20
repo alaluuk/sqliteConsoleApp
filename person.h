@@ -12,6 +12,7 @@ private:
     QSqlDatabase db;
 public:
     Person();
+    ~Person();
     string getData();
     string getSelected(int id);
     string addTodatabase(int id, QString fn, QString ln);
