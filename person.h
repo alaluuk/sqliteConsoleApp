@@ -5,6 +5,10 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include<iostream>
+
+#include <QFile>
+#include <QTextStream>
+
 using namespace std;
 class Person
 {
@@ -18,6 +22,7 @@ public:
     string addTodatabase(int id, QString fn, QString ln);
     string delFromDatabase(int id);
     string updateSelected(int id, QString fn, QString ln);
+    string insertFromTextFile(string filename);
 };
 
 #endif // PERSON_H

@@ -10,12 +10,13 @@ void oneRow();
 void addData();
 void updateData();
 void deleteData();
+void isertFromFile();
 
 int main(int argc, char *argv[])
 {
     int choice=1;
     QCoreApplication a(argc, argv);
-    while (choice!=6){
+    while (choice!=0){
           choice=menu();
     if(choice==1){
         allRows();
@@ -32,6 +33,9 @@ int main(int argc, char *argv[])
     else if(choice==5){
         deleteData();
     }
+    else if(choice==6){
+        isertFromFile();
+    }
     else{
         cout<<"Loppu"<<endl;
     }
@@ -47,7 +51,8 @@ int menu(){
     cout<<"(3) lisaa uusi"<<endl;
     cout<<"(4) muokkaa tietue"<<endl;
     cout<<"(5) poista tietue"<<endl;
-    cout<<"(6) LOPETA"<<endl;
+    cout<<"(6) lisaa data tiedostosta"<<endl;
+    cout<<"(0) LOPETA"<<endl;
     cin>>choice;
     return choice;
 }
@@ -107,3 +112,10 @@ void deleteData(){
     data=objectPerson.delFromDatabase(id);
     cout<<data;
 }
+void isertFromFile(){
+
+    string filename="C:/temp/persondata.txt";
+    Person objectPerson;
+    string data=objectPerson.insertFromTextFile(filename);
+    cout<<data;
+ }
