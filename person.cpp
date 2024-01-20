@@ -123,14 +123,14 @@ string Person::delFromDatabase(int id) {
     }
   }
 }
-string Person::insertFromTextFile(string filename) {
+string Person::insertFromTextFile(QString filename) {
   if (!db.open()) {
     qDebug() << "ERROR :" + db.lastError().text();
     return "No connection";
   } else {
     QString row;
     QSqlQuery query;
-    QFile file("C:/temp/persondata.txt");
+    QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
       qDebug() << "Error: Could not open text file!";
       return "error";

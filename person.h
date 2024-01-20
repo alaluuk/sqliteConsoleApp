@@ -22,7 +22,7 @@ public:
     string addTodatabase(int id, QString fn, QString ln);
     string delFromDatabase(int id);
     string updateSelected(int id, QString fn, QString ln);
-    string insertFromTextFile(string filename);
+    string insertFromTextFile(QString filename);
 };
 
 #endif // PERSON_H

@@ -114,7 +114,7 @@ void deleteData(){
 }
 void isertFromFile(){
 
-    string filename="C:/temp/persondata.txt";
+    QString filename="C:/temp/persondata.txt";
     Person objectPerson;
     string data=objectPerson.insertFromTextFile(filename);
     cout<<data;
