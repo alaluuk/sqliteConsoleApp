@@ -11,6 +11,14 @@ Sovelluksen asentamiseksi riittää, että lataat tuon paketin ja purat sen kone
 sqlite3 mydb.db
 </pre>
 
+Tämän esimerkin tietokanta on luotu koodilla 
+<pre>
+create table person(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+firstname varchar(45),
+lastname varchar(45));
+</pre>
+
 ## Sovelluksen rakenne
 
 Sovelluksen **pro-tiedostoon** tulee lisätä rivi 
