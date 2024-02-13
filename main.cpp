@@ -14,6 +14,7 @@ void isertFromFile();
 
 int main(int argc, char *argv[])
 {
+
     int choice=1;
     QCoreApplication a(argc, argv);
     while (choice!=0){
@@ -114,9 +115,7 @@ void deleteData(){
     cout<<data;
 }
 void isertFromFile(){
-
-    QString filename="C:/temp/persondata.txt";
     Person objectPerson;
-    string data=objectPerson.insertFromTextFile(filename);
+    string data=objectPerson.insertFromTextFile();
     cout<<data;
  }

@@ -14,6 +14,7 @@ class Person
 {
 private:
     QSqlDatabase db;
+    QString myFolder;
 public:
     Person();
     ~Person();
@@ -22,7 +23,7 @@ public:
     string addTodatabase(QString fn, QString ln);
     string delFromDatabase(int id);
     string updateSelected(int id, QString fn, QString ln);
-    string insertFromTextFile(QString filename);
+    string insertFromTextFile();
 };
 
 #endif // PERSON_H

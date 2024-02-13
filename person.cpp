@@ -1,11 +1,19 @@
 #include "person.h"
 
 #include <QCoreApplication>
+#include <Qdir>
 
 Person::Person() {
   db = QSqlDatabase::addDatabase("QSQLITE");
-  QString myFolder = "C:/codes/qt_projects/sqliteConsoleApp";
-  db.setDatabaseName(myFolder + "/database/mydb.db");
+
+  //database kansio on projektikansion sisällä
+  //asetetaan sen polku
+  QDir dir("../database");
+  myFolder = dir.absolutePath();
+  //hakemisto polun tarkistus
+  //qDebug()<<myFolder;
+  db.setDatabaseName(myFolder+"/mydb.db");
+  //avataan tietokantayhteys
   db.open();
 }
 
@@ -122,7 +130,10 @@ string Person::delFromDatabase(int id) {
     }
   }
 }
-string Person::insertFromTextFile(QString filename) {
+string Person::insertFromTextFile() {
+  QDir dir("../database");
+  myFolder = dir.absolutePath();
+  QString filename=myFolder+"/persondata.txt";
   if (!db.open()) {
     qDebug() << "ERROR :" + db.lastError().text();
     return "No connection";

@@ -28,16 +28,16 @@ QT += sql
 
 Ja sitten SQLiten vuoksi tässä tapauksessa tiedostoon **person.h** rivit 
 <pre>
-#include <QSqlDatabase>
-#include <QSqlError>
-#include <QSqlQuery>
+#include &lt;QSqlDatabase&gt;
+#include &lt;QSqlError&gt;
+#include &lt;QSqlQuery&gt;
 </pre>
 Ja koska sovelluksessa on myös mahdollisuus lisätä dataa tietokantaan tiedostosta, tarvitaan person.h tiedostoon rivit 
 <pre>
-#include <QFile>
-#include <QTextStream>
+#include &lt;QFile&gt;
+#include &lt;QTextStream&gt;
 </pre>
-Ja, jos haluat että tiedostosta lisääminen toimii, luo kansioon C:/temp tiedosto nimeltään **persondata.txt**, jonka rakenne on seuraavanlainen 
+Ja, jos haluat että tiedostosta lisääminen toimii, luo kansioon database tiedosto nimeltään **persondata.txt**, jonka rakenne on seuraavanlainen 
 <pre>
 Etunimi1, Sukunimi1
 Etunimi2, Sukunimi2
