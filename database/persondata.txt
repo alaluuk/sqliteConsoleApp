@@ -1,3 +1,6 @@
 James,Potkukelkka
 Mikko,Vilkas
 Aino,Joki
+
+
+insert into person (firstname,lastname) values('Teppo','Testi');

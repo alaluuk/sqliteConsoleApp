@@ -37,8 +37,3 @@ Ja koska sovelluksessa on myös mahdollisuus lisätä dataa tietokantaan tiedost
 #include &lt;QFile&gt;
 #include &lt;QTextStream&gt;
 </pre>
-Ja, jos haluat että tiedostosta lisääminen toimii, luo kansioon database tiedosto nimeltään **persondata.txt**, jonka rakenne on seuraavanlainen 
-<pre>
-Etunimi1, Sukunimi1
-Etunimi2, Sukunimi2
-</pre>
