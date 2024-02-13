@@ -37,3 +37,17 @@ Ja koska sovelluksessa on myös mahdollisuus lisätä dataa tietokantaan tiedost
 #include &lt;QFile&gt;
 #include &lt;QTextStream&gt;
 </pre>
+
+## Projektikansion polku
+
+Sovelluksen tietokanta tiedosto **mydb.db** sijaitsee projektikansion alla kansiossa database.
+Jotta hakemistopolkua ei tarvise kovakoodata käytin seuraavaa rakennetta 
+<pre>
+#include &lt;Qdir&gt;
+  //database kansio on projektikansion sisällä
+  //asetetaan sen polku
+  QDir dir("../database");
+  myFolder = dir.absolutePath();
+
+  db.setDatabaseName(myFolder+"/mydb.db");
+</pre>
