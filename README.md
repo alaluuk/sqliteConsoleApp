@@ -51,3 +51,12 @@ Jotta hakemistopolkua ei tarvise kovakoodata käytin seuraavaa rakennetta
 
   db.setDatabaseName(myFolder+"/mydb.db");
 </pre>
+
+## Datan lisääminen tiedostosta tietokantaan
+
+Kansiossa database on myös tekstitiedosto **persondata.txt**, josta data voidaan lisätä tietokantaan. Lisääminen tapahtuu kutsumalla person-luokan insertFromTextFile() metodia.
+Tiedoston käytön mahdollistamiseksi person luokkaan on lisätty rivit 
+<pre>
+#include &lt;QFile&gt;
+#include &lt;QTextStream&gt;
+</pre>
