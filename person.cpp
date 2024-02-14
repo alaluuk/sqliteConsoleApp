@@ -2,7 +2,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
-
+#include <QDebug>
 
 Person::Person() {
   db = QSqlDatabase::addDatabase("QSQLITE");
