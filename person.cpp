@@ -1,7 +1,8 @@
 #include "person.h"
 
 #include <QCoreApplication>
-#include <Qdir>
+#include <QDir>
+
 
 Person::Person() {
   db = QSqlDatabase::addDatabase("QSQLITE");
